@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
-# José María Martín Luque
-# SPSI - Práctica 2
+# archivo:    spsi.p2.e3.py
+# asignatura: Seguridad y Protección de Sistemas Informáticos
+# práctica:   Práctica 2
+# autor:      José María Martín Luque
 
 def texto_a_numeros(texto):
     """Convierte el texto recibido a una cadena de números.
