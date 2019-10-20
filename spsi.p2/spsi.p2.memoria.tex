@@ -1,0 +1,154 @@
+% archivo:    spsi.p2.memoria.tex
+% asignatura: Seguridad y Protección de Sistemas Informáticos
+% práctica:   Práctica 2
+% autor:      José María Martín Luque
+\documentclass[
+  a4paper,
+  spanish,
+  12pt,
+]{scrartcl}
+
+\linespread{1.1}
+\setlength{\parindent}{18pt}
+
+
+%-------------------------------------------------------------------------------
+%	PAQUETES
+%-------------------------------------------------------------------------------
+
+% Idioma
+
+\usepackage[es-noindentfirst, es-tabla]{babel}
+
+% Matemáticas
+
+\usepackage{amsmath, amsthm, amssymb}
+\usepackage{mathtools}
+\usepackage{commath}
+
+% Fuentes personalizadas para utilizar con XeLaTeX o LuaLaTeX
+
+\usepackage[no-math]{fontspec}
+\setmainfont{TeX Gyre Schola}
+\setsansfont{Fira Sans}
+\setmonofont[Scale=0.93]{Iosevka}
+
+\usepackage[math-style=TeX]{unicode-math}
+\setmathfont{TeX Gyre Schola Math}
+
+% Configuración de microtype
+
+\defaultfontfeatures{Ligatures=TeX,Numbers=Lining}
+\usepackage[activate={true,nocompatibility},final,tracking=true,factor=1100,stretch=10,shrink=10]{microtype}
+\SetTracking{encoding={*}, shape=sc}{0}
+
+% Enlaces y colores
+
+\usepackage{hyperref}
+\usepackage{xcolor}
+\hypersetup{
+  colorlinks=true,
+  citecolor=,
+  linkcolor=,
+  urlcolor=blue,
+}
+
+% Otros elementos de página
+
+\usepackage{enumitem}
+\setlist[itemize]{leftmargin=*}
+\setlist[enumerate]{leftmargin=*}
+
+\usepackage[labelfont=sc]{caption}
+
+\usepackage{booktabs}
+\renewcommand\arraystretch{1.5}
+
+% Tikz
+
+\usepackage{tikz}
+\usetikzlibrary{babel}
+\usepackage{float}
+
+% Código
+
+\usepackage{listings}
+\lstset{
+	basicstyle=\ttfamily,%
+	breaklines=true,%
+	captionpos=b,                    % sets the caption-position to bottom
+  tabsize=2,	                   % sets default tabsize to 2 spaces
+  frame=lines,
+  numbers=left,
+  stepnumber=1,
+  aboveskip=12pt,
+  showstringspaces=false,
+  keywordstyle=\bfseries,
+  commentstyle=\itshape,
+  columns=flexible,
+}
+\renewcommand{\lstlistingname}{Listado}
+
+%-------------------------------------------------------------------------------
+%	TÍTULO
+%-------------------------------------------------------------------------------
+
+\newcommand{\horrule}[1]{\rule{\linewidth}{#1}} % Create horizontal rule command with 1 argument of height
+
+\title{	
+\normalfont \normalsize 
+\textsc{Universidad de Granada}\\ [25pt] % Your university, school and/or department name(s)
+\horrule{0.5pt} \\[0.4cm] % Thin top horizontal rule
+{\sffamily\bfseries\Large Práctica 2. Criptosistemas afines} \\[6pt] % The assignment title
+\textsf{\textsc{Seguridad y Protección de Sistemas Informáticos} \\Grado en Ingeniería Informática}\\
+\horrule{2pt} \\ % Thick bottom horizontal rule
+}
+
+\author{José María Martín Luque} % Your name
+
+\date{\normalsize\today} % Today's date or a custom date
+
+%-------------------------------------------------------------------------------
+%	CONTENIDO
+%-------------------------------------------------------------------------------
+
+\begin{document}
+
+\maketitle % Print the title
+
+\section*{Ejercicios 1, 2 y 4}
+
+Para obtener el texto en claro del mensaje cifrado proporcionado en el ejercicio 4 (listado  \ref{lst:cifrado}) se ha utilizado un ataque basado en la prueba \textit{chi-cuadrado}, para lo que ha sido necesario realizar los ejercicios 1 y 2. 
+
+La técnica que subyace tras este tipo de ataque consiste en descifrar el mensaje utilizando todas las posibles claves —en un alfabeto de 26 caracteres son $12\cdot 26 - 1 = 311$— y comparar mediante un test \textit{chi cuadrado} la frecuencia observada con la que aparecen las letras en dicho posible mensaje descifrado con la frecuencia esperada de dichas letras, es decir, la frecuencia en la que aparece en el idioma en el que sabemos que está escrito el mensaje original.
+
+\begin{lstlisting}[caption={Mensaje cifrado}, label={lst:cifrado}, breaklines=true]
+BZBTJAVGQGVOTBVGTKFNGQGVMTTNWVYNBFZBATDTBZYNYTBRANBMTDTBTDEVFZBGTYTBNKNGNBWGNXKN
+BGTWZGVBZTFQGTNQRAWVYTGVFQTGBTXVWGNBFTMVXYTDNSNQVGTBWTTKTFTAWVLRTQNGTDTBTGZANDDT
+BZIKTNKEVFIGTTAIRBDNYTKNBQZTSNBLRTMZMTATAFZBIVBLRTBBRIFNGZAVBFZBGTINJAVBDVFVKVBY
+TKMZTUVQNBWVGYTATQWRAVQNDTABZAWTFVGTAKNBZAFTABNBQGNYTGNBYTKVDTNAVWTAJVXVNEZRANMN
+BWNQGVQZTYNYLRTTCQKVWVXVFZBFVXLRTTBWNBTFIGNYNQVGKNFNAVYTKDGTNYVGYTWVYNBKNBDVBNB
+\end{lstlisting}
+
+Para ello se ha implementado un programa en Python, mostrado y comentado en el listado \ref{lst:python}, que recibe como entrada —o bien solicita al ejecutarse— un mensaje cifrado bajo un criptosistema afín basado en un alfabeto castellano normalizado de 26 caracteres —es decir, sin la ñ—. 
+
+El mensaje descifrado descrito en el listado \ref{lst:descifrado} es un fragmento de la obra del del escritor francés Julio Verne \href{https://es.wikisource.org/wiki/Veinte_mil_leguas_de_viaje_submarino:_Primera_parte:_Cap%C3%ADtulo_X}{«Veinte mil leguas de viaje submarino»}. Concretamente pertenece a una intervención del Capitán Nemo en la que responde al profesor Aronnax. La elección de este texto por parte del profesor quizás pueda tener relación con el apelativo cariñoso que algunos alumnos le pusieron tiempo atrás...
+
+\begin{quote}
+  \itshape Sí, señor profesor. El mar provee a todas mis necesidades. Unas veces echo mis redes a la rastra y las retiro siempre a punto de romperse, y otras me voy de caza por este elemento que parece ser inaccesible al hombre, en busca de las piezas que viven en mis bosques submarinos. Mis rebaños, como los del viejo pastor de Neptuno, pacen sin temor en las inmensas praderas del océano. Tengo yo ahí una vasta propiedad que exploto yo mismo y que está sembrada por la mano del Creador de todas las cosas.
+\end{quote}
+
+
+\begin{lstlisting}[caption={Mensaje descifrado}, label={lst:descifrado}, breaklines=true]
+sisegnorprofesorelmarproveeatodasmisnecesidadesunasvecesechomisredesalarastrayla
+sretirosiempreapuntoderomperseyotrasmevoydecazaporesteelementoquepareceserinacce
+siblealhombreenbuscadelaspiezasquevivenenmisbosquessubmarinosmisrebagnoscomolosd
+elviejopastordeneptunopacensintemorenlasinmensaspraderasdeloceanotengoyoahiunava
+stapropiedadqueexplotoyomismoyqueestasembradaporlamanodelcreadordetodaslascosas
+\end{lstlisting}
+
+\lstinputlisting[language=Python, keywordstyle=\bfseries,
+commentstyle=\itshape,caption={Programa que realiza el ataque \textit{chi-cuadrado}}, label={lst:python}]{spsi.p2.py}
+
+
+\end{document}
