@@ -75,3 +75,71 @@ def afin(a, b, x, s):
     
     return numeros_a_texto(numeros)
 
+"""Frecuencias relativas de las letras en el castellano"""
+f_a = {
+    "a" : 12.53,
+    "b" : 1.42,
+    "c" : 4.68,
+    "d" : 5.86,
+    "e" : 13.68,
+    "f" : 0.69,
+    "g" : 1.01,
+    "h" : 0.70,
+    "i" : 6.25,
+    "j" : 0.44,
+    "k" : 0.02,
+    "l" : 4.97,
+    "m" : 3.15,
+    "n" : 6.71,
+    "o" : 8.68,
+    "p" : 2.51,
+    "q" : 0.88,
+    "r" : 6.87,
+    "s" : 7.98,
+    "t" : 4.63,
+    "u" : 3.93,
+    "v" : 0.90,
+    "w" : 0.01,
+    "x" : 0.22,
+    "y" : 0.90,
+    "z" : 0.52
+}
+
+def ataque_chi_cuadrado(s):
+    """Función que descifra un mensaje cifrado mediante un criptosistema afín utilizando la prueba chi cuadrado.
+
+    Parámetros:
+    s -- Mensaje a descifrar
+
+    La técnica que subyace tras este ataque consiste en descifrar el mensaje utilizando todas las posibles claves —en un alfabeto de 26 caracteres son 12*26 - 1 = 311— y comparar mediante un test chi cuadrado la frecuencia observada con la que aparecen las letras en dicho posible mensaje descifrado con las del idioma en el que sabemos que está escrito el mensaje original, esto es, la frecuencia esperada de dicha letra.
+
+    La probabilidad de frecuencia característica 'f_a' se ha obtenido de Wikipedia y se puede consultar en 
+        https://es.wikipedia.org/wiki/Frecuencia_de_aparici%C3%B3n_de_letras#Frecuencia_de_aparici%C3%B3n_de_letras_en_espa%C3%B1ol
+    """
+
+    d = []
+
+    for a in [1, 3, 5, 7, 9, 11, 15, 17, 19, 21, 23, 25]:
+        for b in range(26):
+            m = afin(a, b, 1, s)
+
+            """ Las siguientes variables almacenan,
+            'o_m' las es frecuencias observadas para cada caracter, 
+            'e_a' las frecuencias esperadas obtenidas a partir de 'f_a', y
+            'r' el gradi chi cuadrado del mensaje 'm'.
+            """
+            o_m = {}
+            e_a = {}
+            r = 0
+
+            for n in range(26):
+                c = chr(n+97)
+                o_m[c] = m.count(c)
+                e_a[c] = f_a[c]/100 * len(m)
+
+                r = r + ((o_m[c] + e_a[c])**2)/e_a[c]
+            d.append((r, m))
+            
+    d.sort()
+
+    return d[0]
