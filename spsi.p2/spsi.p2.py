@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# archivo:    spsi.p2.e3.py
+# archivo:    spsi.p2.py
 # asignatura: Seguridad y Protección de Sistemas Informáticos
 # práctica:   Práctica 2
 # autor:      José María Martín Luque
