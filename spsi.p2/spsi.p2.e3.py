@@ -18,7 +18,7 @@ def texto_a_numeros(texto):
 
     numeros = []
     for c in texto:
-        n = ord(c) - 96
+        n = ord(c) - 97
         numeros.append(n)
     return numeros
 
@@ -29,7 +29,7 @@ def numeros_a_texto(numeros):
 
     texto = ""
     for n in numeros:
-        c = chr(n + 96)
+        c = chr(n + 97)
         texto = texto + c
     return texto
 
