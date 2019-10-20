@@ -106,14 +106,21 @@ f_a = {
 }
 
 def ataque_chi_cuadrado(s):
-    """Función que descifra un mensaje cifrado mediante un criptosistema afín utilizando la prueba chi cuadrado.
+    """Función que descifra un mensaje cifrado mediante un criptosistema afín 
+    utilizando la prueba chi cuadrado.
 
     Parámetros:
     s -- Mensaje a descifrar
 
-    La técnica que subyace tras este ataque consiste en descifrar el mensaje utilizando todas las posibles claves —en un alfabeto de 26 caracteres son 12*26 - 1 = 311— y comparar mediante un test chi cuadrado la frecuencia observada con la que aparecen las letras en dicho posible mensaje descifrado con las del idioma en el que sabemos que está escrito el mensaje original, esto es, la frecuencia esperada de dicha letra.
+    La técnica que subyace tras este ataque consiste en descifrar el mensaje 
+    utilizando todas las posibles claves —en un alfabeto de 26 caracteres son 
+    12*26 - 1 = 311— y comparar mediante un test chi cuadrado la frecuencia 
+    observada con la que aparecen las letras en dicho posible mensaje 
+    descifrado con las del idioma en el que sabemos que está escrito el mensaje 
+    original, esto es, la frecuencia esperada de dicha letra.
 
-    La probabilidad de frecuencia característica 'f_a' se ha obtenido de Wikipedia y se puede consultar en 
+    La probabilidad de frecuencia característica 'f_a' se ha obtenido de 
+    Wikipedia y se puede consultar en 
         https://es.wikipedia.org/wiki/Frecuencia_de_aparici%C3%B3n_de_letras#Frecuencia_de_aparici%C3%B3n_de_letras_en_espa%C3%B1ol
     """
 
