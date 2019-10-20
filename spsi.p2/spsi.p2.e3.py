@@ -4,6 +4,8 @@
 # práctica:   Práctica 2
 # autor:      José María Martín Luque
 
+import sys
+
 def texto_a_numeros(texto):
     """Convierte el texto recibido a una cadena de números.
     
@@ -150,3 +152,14 @@ def ataque_chi_cuadrado(s):
     d.sort()
 
     return d[0]
+
+def main(argv):
+    if len(argv) < 2:
+        c = input("Introduce un mensaje a descrifrar: ")
+        print(ataque_chi_cuadrado(c)[1])
+    else:
+        for c in argv[1:]:
+            print(ataque_chi_cuadrado(c)[1])
+
+if __name__ == "__main__":
+    main(sys.argv)
