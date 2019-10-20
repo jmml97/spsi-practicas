@@ -131,9 +131,9 @@ def ataque_chi_cuadrado(s):
             m = afin(a, b, 1, s)
 
             """ Las siguientes variables almacenan,
-            'o_m' las es frecuencias observadas para cada caracter, 
+            'o_m' las frecuencias observadas para cada caracter, 
             'e_a' las frecuencias esperadas obtenidas a partir de 'f_a', y
-            'r' el gradi chi cuadrado del mensaje 'm'.
+            'r' el grado chi cuadrado del mensaje 'm'.
             """
             o_m = {}
             e_a = {}
