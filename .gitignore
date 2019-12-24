@@ -1,8 +1,20 @@
 .DS_Store
 .ipynb_checkpoints
-spsi.p.archivos-profesor
-spsi.p.tareas.pdf
+*.synctex.gz
+
+# Otras prácticas
+spsi.p.openssl.00/
+spsi.p.openssl.01/
+spsi.p.smime/
 spsi.p0
 spsi.p1/alem*
+spsi.p10.ssh/
+spsi.p4/
+spsi.p9.ca/
+spsi.p9bis.formatos.pdf
+
+# Otros archivos
 entregas
-*.synctex.gz
+spsi.tareas.pdf
+spsi.p.archivos-profesor
+
